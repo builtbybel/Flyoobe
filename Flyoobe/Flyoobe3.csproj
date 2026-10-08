@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Flyoobe3</RootNamespace>
+    <AssemblyName>Flyoobe</AssemblyName>
+    <Title>Flyoobe 3</Title>
+    <Product>Flyoobe</Product>
+    <Description>A small, signature driven Windows setup tool.</Description>
+    <AssemblyVersion>3.03.100.0</AssemblyVersion>
+    <FileVersion>3.03.100.0</FileVersion>
+    <Version>3.03.100.0</Version>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Management" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="MainForm.Designer.cs"><DependentUpon>MainForm.cs</DependentUpon></Compile>
+    <Compile Update="Views\OverviewView.Designer.cs"><DependentUpon>OverviewView.cs</DependentUpon></Compile>
+    <Compile Update="Views\RulesView.Designer.cs"><DependentUpon>RulesView.cs</DependentUpon></Compile>
+    <Compile Update="Views\AppsView.Designer.cs"><DependentUpon>AppsView.cs</DependentUpon></Compile>
+    <Compile Update="Views\BloatwareView.Designer.cs"><DependentUpon>BloatwareView.cs</DependentUpon></Compile>
+    <Compile Update="Views\BrowserView.Designer.cs"><DependentUpon>BrowserView.cs</DependentUpon></Compile>
+    <Compile Update="Views\PersonalizationView.Designer.cs"><DependentUpon>PersonalizationView.cs</DependentUpon></Compile>
+    <Compile Update="Views\AccountView.Designer.cs"><DependentUpon>AccountView.cs</DependentUpon></Compile>
+    <Compile Update="Views\SettingsView.Designer.cs"><DependentUpon>SettingsView.cs</DependentUpon></Compile>
+    <Compile Update="Views\ExplainDialog.Designer.cs"><DependentUpon>ExplainDialog.cs</DependentUpon></Compile>
+    <Compile Update="Views\RecipeExportDialog.Designer.cs"><DependentUpon>RecipeExportDialog.cs</DependentUpon></Compile>
+    <Compile Update="Views\UpgradeView.Designer.cs"><DependentUpon>UpgradeView.cs</DependentUpon></Compile>
+    <Compile Update="Views\Settings\AdvancedSettingsView.Designer.cs"><DependentUpon>AdvancedSettingsView.cs</DependentUpon></Compile>
+    <Compile Update="Features\SetupActions\SetupActionsView.Designer.cs"><DependentUpon>SetupActionsView.cs</DependentUpon></Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- the app icon is identity, not data: it travels inside the exe and is never copied out.
+         ApplicationIcon compiles the .ico in as the Win32 resource, the embedded copies
+         let MainForm and the About page load the artwork in every size Windows asks for -->
+    <EmbeddedResource Include="Assets\AppIcon.ico" />
+    <EmbeddedResource Include="Assets\AppIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- loose data keeps Flyoobe expandable without a rebuild -->
+    <Content Include="Data\*.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Actions\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Localization\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>
